@@ -435,5 +435,5 @@ Else {
 Write-VerboseLog "PS Remoting has been successfully configured for Ansible."
 
 Write-Host "Open Firewall Port"
-netsh advfirewall firewall add rule name="Windows Remote Management (HTTP-In)" dir=in action=allow protocol=TCP localport=5985
+# netsh advfirewall firewall add rule name="Windows Remote Management (HTTP-In)" dir=in action=allow protocol=TCP localport=5985
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new enable=yes
