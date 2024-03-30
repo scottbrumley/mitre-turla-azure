@@ -100,5 +100,5 @@ locals {
   auto_logon_data    = "<AutoLogon><Password><Value>${var.admin_password}</Value></Password><Enabled>true</Enabled><LogonCount>1</LogonCount><Username>${var.admin_username}</Username></AutoLogon>"
   first_logon_data   = file("${path.module}/files/FirstLogonCommands.xml")
   custom_data_params = "Param($RemoteHostName = \"${local.virtual_machine_name}\", $ComputerName = \"${local.virtual_machine_name}\")"
-  custom_data        = base64encode(join(" ", [local.custom_data_params, file("${path.module}/files/winrm.ps1")]))
+  custom_data        = base64encode(join(" ", [local.custom_data_params, file("${path.module}/files/ConfigureRemotingForAnsible.ps1")]))
 }
