@@ -1,8 +1,15 @@
-resource "azurerm_subnet" "bastion-subnet" {
+resource "azurerm_virtual_network" "bastion-virtnet" {
+ name                = "${var.name-prefix}-bastion-vnet"
+ address_space       = [var.vnet3-address-space]
+ location            = module.rgroup.location
+ resource_group_name = module.rgroup.name
+}
+
+resource "azurerm_subnet" "AzureBastionSubnet" {
  name                 = "AzureBastionSubnet"
  resource_group_name  = module.rgroup.name
  virtual_network_name = azurerm_virtual_network.vnet3.name
- address_prefixes     = [var.vnet3-sub2-range]
+ address_prefixes     = ["91.52.64.0/26"]
 }
 
 resource "azurerm_public_ip" "bastion-pip" {
@@ -19,7 +26,7 @@ resource "azurerm_bastion_host" "bastion-host" {
  resource_group_name = module.rgroup.name
  ip_configuration {
   name                 = "configuration"
-  subnet_id            = azurerm_subnet.bastion-subnet.id
+  subnet_id            = azurerm_subnet.AzureBastionSubnet.id
   public_ip_address_id = azurerm_public_ip.bastion-pip.id
  }
 }
