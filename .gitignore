@@ -1,2 +1,4 @@
 evals-ranges/deploy.auto.tfvars
 evals-ranges/.terraform
+.idea
+*.iml
