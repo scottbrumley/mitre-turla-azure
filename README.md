@@ -23,11 +23,14 @@ SSH Keys will be stored:
 1. ssh-keygen -b 4096 -t rsa # Generate the Public and Private Keys for SSH
 2. git clone https://github.com/scottbrumley/mitre-turla-azure.git
 3. cd mitre-turla-azure
-4. mv snake.tf snake.tf-disabled # This ignores the Snake environment
-5. terraform init  # On first run of terraform
-6. terraform apply --auto-approve # This will ask for the public and private ssh keys
-7. Once All Windows Hosts are up, use the Bastion to login to each one.
-8. One Desktop machines enable Windows Remote Management (HTTP-In) rules in the Adv. Firewall GUI
+4. cp deploy.auto.tfvars.template deploy.auto.tfvars
+5. edit deploy.auto.tfvars
+6. mv snake.tf snake.tf-disabled # This ignores the Snake environment
+7. az login # This should force authentication via the browser and store the keys
+8. terraform init  # On first run of terraform
+9. terraform apply --auto-approve # This will ask for the public and private ssh keys
+10. Once All Windows Hosts are up, use the Bastion to login to each one.
+11. On Desktop machines enable Windows Remote Management (HTTP-In) rules in the Adv. Firewall GUI
 ```
 
 ## Configure Range
@@ -40,8 +43,8 @@ Use The [Configuration Project](https://github.com/scottbrumley/mitre-turla-conf
 5. ansible carbon_lin -i inventory -m ping --ask-pass -u adminuser # This tests Ansible connectivity to Carbon Linux hosts
 6. ansible carbon_win -i inventory -m win_ping --ask-pass -u adminuser # This tests Ansible connectivity to Carbon Windows hosts
 7. ansible-playbook -i inventory support.yml --ask-pass -u adminuser # Support must be built first since Carbon relies on Carbon
-8. ansible-playbook -i inventory red.yml --ask-pass -u adminuser
-9. ansible-playbook -i inventory carbon.yml --ask-pass -u adminuser
+8. ansible-playbook -i inventory carbon.yml --ask-pass -u adminuser
+9. ansible-playbook -i inventory red.yml --ask-pass -u adminuser
 ```
 
 ## Destroy Range
