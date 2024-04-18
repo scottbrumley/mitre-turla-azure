@@ -1,4 +1,4 @@
-# MTIRE Evaluation Turla Range 2023
+# MITRE Evaluation Turla Range 2023
 
 This project is an easy button for building the [2023 MITRE Evaluation Range](https://github.com/center-for-threat-informed-defense/adversary_emulation_library/tree/master/turla) with Carbon and Snake scenario environments. This was tested using MacOS, so it should work similarly on Linux.
 
