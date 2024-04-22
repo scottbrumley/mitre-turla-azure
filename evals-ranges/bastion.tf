@@ -1,10 +1,3 @@
-resource "azurerm_virtual_network" "bastion-virtnet" {
- name                = "${var.name-prefix}-bastion-vnet"
- address_space       = [var.vnet3-address-space]
- location            = module.rgroup.location
- resource_group_name = module.rgroup.name
-}
-
 resource "azurerm_subnet" "AzureBastionSubnet" {
  name                 = "AzureBastionSubnet"
  resource_group_name  = module.rgroup.name
