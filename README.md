@@ -30,7 +30,6 @@ SSH Keys will be stored:
 8. terraform init  # On first run of terraform
 9. terraform apply --auto-approve # This will ask for the public and private ssh keys
 10. Once All Windows Hosts are up, use the Bastion to login to each one.
-11. On Desktop machines enable Windows Remote Management (HTTP-In) rules in the Adv. Firewall GUI
 ```
 
 ## Configure Range
