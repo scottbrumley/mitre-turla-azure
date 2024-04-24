@@ -73,6 +73,21 @@ resource "azurerm_windows_virtual_machine" "main" {
     ]
   }
 
+resource "azurerm_virtual_machine_extension" "ansible_ps_script" {
+  name                 = "${var.name}-wsi"
+  virtual_machine_id   = azurerm_windows_virtual_machine.main.id
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.9"
+  
+  settings = <<SETTINGS    
+    {
+    "commandToExecute": "echo [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$url = \"https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1\";$file = \"$env:temp\\ConfigureRemotingForAnsible.ps1\";(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file);Enable-NetFirewallRule -DisplayGroup \"Windows Remote Management\";Enable-NetFirewallRule -DisplayGroup \"Network Discovery\"; Set-NetConnectionProfile -InterfaceAlias Ethernet -NetworkCategory \"Private\" > C:\\Windows\\Temp\\DownloadAnsible.ps1 && powershell.exe -ExecutionPolicy ByPass -File C:\\Windows\\Temp\\DownloadAnsible.ps1 && powershell.exe -ExecutionPolicy ByPass -File %Temp%\\ConfigureRemotingForAnsible.ps1"
+    }
+  SETTINGS             
+  
+}
+ 
 
   tags = local.default_tags
 }
