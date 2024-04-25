@@ -72,6 +72,9 @@ resource "azurerm_windows_virtual_machine" "main" {
       size
     ]
   }
+ 
+  tags = local.default_tags
+}
 
 resource "azurerm_virtual_machine_extension" "ansible_ps_script" {
   name                 = "${var.name}-wsi"
@@ -86,8 +89,4 @@ resource "azurerm_virtual_machine_extension" "ansible_ps_script" {
     }
   SETTINGS             
   
-}
- 
-
-  tags = local.default_tags
 }
