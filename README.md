@@ -29,7 +29,6 @@ SSH Keys will be stored:
 7. az login # This should force authentication via the browser and store the keys
 8. terraform init  # On first run of terraform
 9. terraform apply --auto-approve # This will ask for the public and private ssh keys
-10. Once All Windows Hosts are up, use the Bastion to login to each one.
 ```
 
 ## Configure Range
@@ -44,6 +43,7 @@ Use The [Configuration Project](https://github.com/scottbrumley/mitre-turla-conf
 7. ansible-playbook -i inventory support.yml --ask-pass -u adminuser # Support must be built first since Carbon relies on Carbon
 8. ansible-playbook -i inventory carbon.yml --ask-pass -u adminuser
 9. ansible-playbook -i inventory red.yml --ask-pass -u adminuser
+10. ansible-playbook -i inventory red.yml --ask-pass -u adminuser # Disable Defender if it needs to be disabled for the evaluation.
 ```
 
 ## Destroy Range
