@@ -38,12 +38,8 @@ Use The [Configuration Project](https://github.com/scottbrumley/mitre-turla-conf
 2. git clone https://github.com/scottbrumley/mitre-turla-config.git
 3. cd mitre-turla-config
 4. ./init.sh # This sets up the ansible environment
-5. ansible carbon_lin -i inventory -m ping --ask-pass -u adminuser # This tests Ansible connectivity to Carbon Linux hosts
-6. ansible carbon_win -i inventory -m win_ping --ask-pass -u adminuser # This tests Ansible connectivity to Carbon Windows hosts
-7. ansible-playbook -i inventory support.yml --ask-pass -u adminuser # Support must be built first since Carbon relies on Carbon
-8. ansible-playbook -i inventory carbon.yml --ask-pass -u adminuser
-9. ansible-playbook -i inventory red.yml --ask-pass -u adminuser
-10. ansible-playbook -i inventory red.yml --ask-pass -u adminuser # Disable Defender if it needs to be disabled for the evaluation.
+5. ansible-playbook -i inventory runall.yml --ask-pass -u adminuser
+
 ```
 
 ## Destroy Range
