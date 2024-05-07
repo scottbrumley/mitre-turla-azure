@@ -22,9 +22,6 @@ module "rgroup" {
   source   = "../modules/rgroup"
   name     = "${var.name-prefix}-rg"
   location = var.location
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 #####################################################################################
